@@ -1,7 +1,11 @@
 package com.dojo.zupflixdojo.zupper;
 
+import com.dojo.zupflixdojo.palestra.Palestra;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Zupper {
@@ -19,6 +23,9 @@ public class Zupper {
     @Column(nullable = false)
     private String email;
 
+    @ManyToMany(mappedBy = "zuppers")
+    private Set<Palestra> palestras = new HashSet<>();
+
     public Zupper(String nome, LocalDate dataDeAdmissao, String email) {
         this.nome = nome;
         this.dataDeAdmissao = dataDeAdmissao;
@@ -31,6 +38,11 @@ public class Zupper {
 
     public Long getId() {
         return id;
+    }
+
+
+    public void adicionarPalestra(Palestra novaPalestra){
+        this.palestras.add(novaPalestra);
     }
 
 }

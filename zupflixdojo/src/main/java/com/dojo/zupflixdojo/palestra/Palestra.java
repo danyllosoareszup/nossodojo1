@@ -3,6 +3,7 @@ package com.dojo.zupflixdojo.palestra;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -61,7 +62,9 @@ public class Palestra {
         return id;
     }
 
-    public void adiciona(Zupper zupper) {
-        zuppers.add(zupper);
+    public void adiciona(Set<Zupper> zupperList) {
+        zuppers.addAll(zupperList);
+        zupperList.forEach(zupper -> {zupper.adicionarPalestra(this);});
+
     }
 }

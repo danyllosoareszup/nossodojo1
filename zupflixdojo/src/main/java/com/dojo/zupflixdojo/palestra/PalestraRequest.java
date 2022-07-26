@@ -40,7 +40,9 @@ public class PalestraRequest {
         Set<Zupper> novosZuppers = zuppers.stream().map((id) -> zupperRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY))).collect(Collectors.toSet());
 
-        return new Palestra(titulo, tema, tempoEmMinutos, TipoExibicao.valueOf(tipoExibicao.name()), dataHoraExibicao, novosZuppers);
+        Palestra novaPalestra = new Palestra(titulo, tema, tempoEmMinutos, TipoExibicao.valueOf(tipoExibicao.name()), dataHoraExibicao, novosZuppers);
+        novaPalestra.adiciona(novosZuppers);
+        return novaPalestra;
     }
 
     public String getTitulo() {
