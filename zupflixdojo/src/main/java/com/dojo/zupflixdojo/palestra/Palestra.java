@@ -5,7 +5,9 @@ import com.dojo.zupflixdojo.zupper.Zupper;
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Palestra {
@@ -30,10 +32,11 @@ public class Palestra {
     @Column(nullable = false)
     private LocalDateTime dataHoraExibicao;
 
-    @OneToMany
-    private List<Zupper> zuppers;
 
-    public Palestra(String titulo, String tema, Duration tempoEmMinutos, TipoExibicao tipoExibicao, LocalDateTime dataHoraExibicao, List<Zupper> zuppers) {
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Zupper> zuppers = new HashSet<>();
+
+    public Palestra(String titulo, String tema, Duration tempoEmMinutos, TipoExibicao tipoExibicao, LocalDateTime dataHoraExibicao, Set<Zupper> zuppers) {
         this.titulo = titulo;
         this.tema = tema;
         this.tempoEmMinutos = tempoEmMinutos;
