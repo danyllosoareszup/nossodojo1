@@ -1,4 +1,4 @@
-package com.dojo.zupflixdojo;
+package com.dojo.zupflixdojo.zupper;
 
 import javax.persistence.*;
 import java.time.LocalDate;

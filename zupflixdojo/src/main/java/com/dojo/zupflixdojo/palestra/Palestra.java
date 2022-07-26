@@ -1,4 +1,6 @@
-package com.dojo.zupflixdojo;
+package com.dojo.zupflixdojo.palestra;
+
+import com.dojo.zupflixdojo.zupper.Zupper;
 
 import javax.persistence.*;
 import java.time.Duration;
