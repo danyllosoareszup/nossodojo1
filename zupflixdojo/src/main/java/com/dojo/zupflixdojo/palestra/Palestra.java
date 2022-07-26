@@ -1,13 +1,21 @@
 package com.dojo.zupflixdojo.palestra;
 
-import com.dojo.zupflixdojo.zupper.Zupper;
-
-import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.dojo.zupflixdojo.zupper.Zupper;
 
 @Entity
 public class Palestra {
@@ -32,11 +40,11 @@ public class Palestra {
     @Column(nullable = false)
     private LocalDateTime dataHoraExibicao;
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Zupper> zuppers = new HashSet<>();
 
-    public Palestra(String titulo, String tema, Duration tempoEmMinutos, TipoExibicao tipoExibicao, LocalDateTime dataHoraExibicao, Set<Zupper> zuppers) {
+    public Palestra(String titulo, String tema, Duration tempoEmMinutos, TipoExibicao tipoExibicao,
+            LocalDateTime dataHoraExibicao, Set<Zupper> zuppers) {
         this.titulo = titulo;
         this.tema = tema;
         this.tempoEmMinutos = tempoEmMinutos;
@@ -51,5 +59,9 @@ public class Palestra {
 
     public Long getId() {
         return id;
+    }
+
+    public void adiciona(Zupper zupper) {
+        zuppers.add(zupper);
     }
 }
